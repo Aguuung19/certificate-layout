@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="certificate" id="certificate">
+            <div class="header">
+                <h1 class="title">LEMBAGA PENELITIAN DAN PENGABDIAN MASYARAKAT</h1>
+                <h1 class="title">UNIVERSITAS BALIKPAPAN</h1>
+            </div>
+        
+        <div class="subheader">
+            <h2>SERTIFIKAT</h2>
+            <h3>NO : B6B-3/LPPM/III/2024</h3>
+            <P>Diberikan Kepada :</P>
+        </div>
+        <div class="content">
+            <div class="biodata">
+                               <table>
+                    <tr>
+                        <th>Nama</th>
+                        <td>John Doe</td>
+                    </tr>
+                    <tr>
+                        <th>NPM</th>
+                        <td>123123123</td>
+                    </tr>
+                    <tr>
+                        <th>PROGRAM STUDI</th>
+                        <td>Teknik Mesin</td>
+                    </tr>
+                    <tr>
+                        <th>FAKULTAS</th>
+                        <td>Teknologi Industri</td>
+                    </tr>
+                    <tr>
+                        <th>LOKASI KKN</th>
+                        <td>[kelompok] - [kelurahan]</td>
+                    </tr>
+                    <tr>
+                        <th>NILAI</th>
+                        <td>A</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="photo">Foto</div>
+        </div>
+        <div class="content">
+            <p>Telah Menyelesaikan Kuliah Kerja Nyata (KKN) Universitas Balikpapan Gelombang ke-XV Tahun Akademik 2024/2025 yang dilaksanakan mulai tanggal 26 Januari s/d 27 February 2025</p>
+        </div>
+        <div class="signature">
+            <p class="date">Balikpapan, 31 Januari 2025</p>
+            <img src="signature.png" alt="Tanda Tangan" class="sign-image">
+            <p class="sign-name">Nama Penandatangan</p>
+        </div>
+    </div>
+    <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+    
+    <script>
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+            
+            html2canvas(document.getElementById('certificate'), { scale: 3 }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                doc.addImage(imgData, 'PNG', 0, 0, 297, 210);
+                doc.save('sertifikat.pdf');
+            });
+        }
+    </script>
+</body>
+</html>
